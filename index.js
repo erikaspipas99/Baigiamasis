@@ -26,7 +26,7 @@ app.post("/machine", async (req, res) => {
     const collection = await db.collection("CreatemMachine");
     const result = await collection.insertOne(value);
     return res.json(result);
-  } catch {
+  } catch (err) {
     return res.send("Error");
   }
 });
@@ -36,7 +36,7 @@ app.get("/machine", async (req, res) => {
     const collection = db.collection("machine");
     const machine = await collection.find().toArray();
     res.json(machine);
-  } catch {
+  } catch (err) {
     res.send("Miss machine");
   }
 });
@@ -56,5 +56,21 @@ app.put("/machine", async (req, res) => {
     res.json(newmachine);
   } catch (err) {
     res.send("error");
+  }
+});
+
+app.delete("/machine", async (req, res) => {
+  try {
+    const collection = db.collection("machine");
+    const deleteMachine = await collection.updateOne({
+      _id: ObjectId.createFromHexString(id),
+    });
+
+    if (deleteMachine === 0) {
+      return res.send("Delete failed");
+    }
+    res.json(deleteMachine);
+  } catch (err) {
+    res.send("Error");
   }
 });
