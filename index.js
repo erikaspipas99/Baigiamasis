@@ -40,3 +40,21 @@ app.get("/machine", async (req, res) => {
     res.send("Miss machine");
   }
 });
+
+app.put("/machine", async (req, res) => {
+  try {
+    const machineUpdate = db.collection("machine");
+    const newAddMachine = machineUpdate.machine;
+    if (!newAddMachine) {
+      res.send("Error, not update new Machine");
+      return;
+    }
+    const collection = db.collection("machine");
+    const newmachine = await collection.updateOne({
+      _id: ObjectId.createFromHexString(id),
+    });
+    res.json(newmachine);
+  } catch (err) {
+    res.send("error");
+  }
+});
