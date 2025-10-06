@@ -16,3 +16,17 @@ try {
 } catch (error) {
   console.log("failed");
 }
+app.post("/machine", async (req, res) => {
+  try {
+    const { value } = await textValidate.validate(req.body);
+    if (!value) {
+      return res.send("Failed get machine info");
+    }
+
+    const collection = await db.collection("CreatemMachine");
+    const result = await collection.insertOne(value);
+    return res.json(result);
+  } catch {
+    return res.send("Error");
+  }
+});
