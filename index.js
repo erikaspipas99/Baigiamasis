@@ -30,3 +30,13 @@ app.post("/machine", async (req, res) => {
     return res.send("Error");
   }
 });
+
+app.get("/machine", async (req, res) => {
+  try {
+    const collection = db.collection("machine");
+    const machine = await collection.find().toArray();
+    res.json(machine);
+  } catch {
+    res.send("Miss machine");
+  }
+});
