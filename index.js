@@ -49,17 +49,17 @@ app.get("/machine", async (req, res) => {
 
 app.put("/machine", async (req, res) => {
   try {
-    const id = req.params;
-    const machineUpdate = db.collection("machine");
-    const newAddMachine = machineUpdate.machine;
-    if (!newAddMachine) {
-      res.send("Error, not update new Machine");
-      return;
+    const { _id, ...updateData } = req.body;
+    if (!_id) {
+      return res.send("Bad machine ID");
     }
     const collection = db.collection("machine");
-    const newmachine = await collection.updateOne({
-      _id: new ObjectId(id),
-    });
+    const newmachine = await collection.updateOne(
+      {
+        _id: new ObjectId(_id),
+      },
+      { $set: updateData }
+    );
     res.json(newmachine);
   } catch (err) {
     res.send("error");
