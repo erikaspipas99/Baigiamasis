@@ -1,6 +1,7 @@
 import express from "express";
 import { MongoClient } from "mongodb";
-import {textValidate} from
+import { ObjectId } from "mongodb";
+import { textValidate } from "./validate.js";
 
 const connectionString =
   "mongodb+srv://admin:admin@cluster0.tyt8w0e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -44,6 +45,7 @@ app.get("/machine", async (req, res) => {
 
 app.put("/machine", async (req, res) => {
   try {
+    const id = req.params;
     const machineUpdate = db.collection("machine");
     const newAddMachine = machineUpdate.machine;
     if (!newAddMachine) {
@@ -52,7 +54,7 @@ app.put("/machine", async (req, res) => {
     }
     const collection = db.collection("machine");
     const newmachine = await collection.updateOne({
-      _id: ObjectId.createFromHexString(id),
+      _id: new ObjectId(id),
     });
     res.json(newmachine);
   } catch (err) {
