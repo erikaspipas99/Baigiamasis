@@ -20,14 +20,16 @@ try {
 } catch (error) {
   console.log("failed");
 }
+
+// ieskojau 40min, kodel neikelia duomenu i mongogb.. pasirodo per mazai skaiciu veidziau prie iD :)))))))
 app.post("/machine", async (req, res) => {
   try {
-    const { value } = await textValidate.validate(req.body);
-    if (!value) {
+    const { error, value } = textValidate.validate(req.body);
+    if (error) {
       return res.send("Failed get machine info");
     }
 
-    const collection = await db.collection("machine");
+    const collection = db.collection("machine");
     const result = await collection.insertOne(value);
     return res.json(result);
   } catch (err) {
