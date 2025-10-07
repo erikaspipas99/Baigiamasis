@@ -2,12 +2,14 @@ import express from "express";
 import { MongoClient } from "mongodb";
 import { ObjectId } from "mongodb";
 import { textValidate } from "./validate.js";
+import cors from "cors";
 
 const connectionString =
   "mongodb+srv://admin:admin@cluster0.tyt8w0e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 let db;
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 try {
