@@ -1,5 +1,6 @@
 import express from "express";
 import { MongoClient } from "mongodb";
+import {textValidate} from
 
 const connectionString =
   "mongodb+srv://admin:admin@cluster0.tyt8w0e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -23,7 +24,7 @@ app.post("/machine", async (req, res) => {
       return res.send("Failed get machine info");
     }
 
-    const collection = await db.collection("CreatemMachine");
+    const collection = await db.collection("machine");
     const result = await collection.insertOne(value);
     return res.json(result);
   } catch (err) {
