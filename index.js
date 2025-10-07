@@ -68,16 +68,14 @@ app.put("/machine", async (req, res) => {
 
 app.delete("/machine", async (req, res) => {
   try {
-    const collection = db.collection("machine");
-    const deleteMachine = await collection.updateOne({
-      _id: ObjectId.createFromHexString(id),
-    });
-
-    if (deleteMachine === 0) {
-      return res.send("Delete failed");
+    const { machine } = req.body;
+    if (!machine) {
+      return res.send("Not Delete Machines");
     }
-    res.json(deleteMachine);
+    const collection = db.collection("machine");
+    const result = await collection.deleteOne({ _id: new ObjectId(_id) });
+    res.json(result);
   } catch (err) {
-    res.send("Error");
+    res.send("Error delete");
   }
 });
