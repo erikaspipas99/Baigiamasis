@@ -68,8 +68,8 @@ app.put("/machine", async (req, res) => {
 
 app.delete("/machine", async (req, res) => {
   try {
-    const { machine } = req.body;
-    if (!machine) {
+    const { _id } = req.body;
+    if (!_id) {
       return res.send("Not Delete Machines");
     }
     const collection = db.collection("machine");
