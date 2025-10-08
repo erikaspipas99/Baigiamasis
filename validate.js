@@ -6,4 +6,5 @@ export const textValidate = Joi.object({
   ip: Joi.string()
     .ip({ version: ["ipv4"] })
     .required(),
+  region: Joi.string().required(),
 });
