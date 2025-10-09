@@ -1,6 +1,11 @@
+import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
+const app = express();
+app.use(express.json());
+
+const router = express.Router();
 const JWT_SECRET = "password";
 
 app.post("/login", async (req, res) => {
@@ -22,3 +27,5 @@ app.post("/login", async (req, res) => {
 
   res.json({ token });
 });
+
+export default router;

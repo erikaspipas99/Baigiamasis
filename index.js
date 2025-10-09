@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb";
 import { ObjectId } from "mongodb";
 import { textValidate } from "./validate.js";
 import cors from "cors";
+import router from "./creatAdmin.js";
 
 const connectionString =
   "mongodb+srv://admin:admin@cluster0.tyt8w0e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -11,6 +12,7 @@ let db;
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(router);
 
 try {
   const connection = await MongoClient.connect(connectionString);

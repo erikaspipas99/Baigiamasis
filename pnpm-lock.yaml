@@ -32,6 +32,9 @@ importers:
       pnpm:
         specifier: ^10.18.1
         version: 10.18.1
+      router:
+        specifier: ^2.2.0
+        version: 2.2.0
 
 packages:
 
