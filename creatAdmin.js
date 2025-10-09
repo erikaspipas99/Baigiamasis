@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
   if (!isValid) return res.send("Bad password");
 
   const token = jwt.sign(
-    { username: user.username, role: user.role },
+    { username: user.username, role: user.role, region: user.region },
     JWT_SECRET,
     { expiresIn: "1h" }
   );
