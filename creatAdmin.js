@@ -1,16 +1,16 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
-const app = express();
-app.use(express.json());
+import { connectDB } from "./db.js";
 
 const router = express.Router();
 const JWT_SECRET = "password";
 
-app.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { username, password } = req.body;
+  console.log(username, password);
 
+  const db = await connectDB();
   const users = db.collection("user");
   const user = await users.findOne({ username });
 

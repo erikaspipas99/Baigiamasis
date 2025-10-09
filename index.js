@@ -1,27 +1,17 @@
 import express from "express";
-import { MongoClient } from "mongodb";
 import { ObjectId } from "mongodb";
 import { textValidate } from "./validate.js";
 import cors from "cors";
 import router from "./creatAdmin.js";
-
-const connectionString =
-  "mongodb+srv://admin:admin@cluster0.tyt8w0e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+import { connectDB } from "./db.js";
 
 let db;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(router);
+app.use("/auth", router);
 
-try {
-  const connection = await MongoClient.connect(connectionString);
-  db = connection.db("sample_mflix");
-  console.log("Connection");
-  app.listen(3000);
-} catch (error) {
-  console.log("failed");
-}
+db = await connectDB();
 
 // ieskojau 40min, kodel neikelia duomenu i mongogb.. pasirodo per mazai skaiciu veidziau prie iD :)))))))
 app.post("/machine", async (req, res) => {
