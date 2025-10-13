@@ -14,10 +14,14 @@ router.post("/login", async (req, res) => {
   const users = db.collection("user");
   const user = await users.findOne({ username });
 
-  if (!user) return res.send("Bad Users");
+  if (!user)
+    return res.status(401).json({ error: "Blogai įvedamas vartotojo vardas" });
 
   const isValid = await bcrypt.compare(password, user.pass);
-  if (!isValid) return res.send("Bad password");
+  if (!isValid)
+    return res
+      .status(401)
+      .json({ error: "Blogai įvedamas vartotojo slaptažodis" });
 
   const token = jwt.sign(
     { username: user.username, role: user.role, region: user.region },
