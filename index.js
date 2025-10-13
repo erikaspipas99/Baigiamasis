@@ -4,6 +4,7 @@ import { textValidate } from "./validate.js";
 import cors from "cors";
 import router from "./creatAdmin.js";
 import { connectDB } from "./db.js";
+import { authRegion } from "./authRegion.js";
 
 let db;
 const app = express();
@@ -29,9 +30,15 @@ app.post("/machine", async (req, res) => {
   }
 });
 
-app.get("/machine", async (req, res) => {
+app.get("/machine", authRegion, async (req, res) => {
   try {
     const collection = db.collection("machine");
+
+    let appeal = {};
+    if (req.user.role !== "admin") {
+      appeal = { region: req.user.region };
+    }
+
     const machine = await collection.find().toArray();
     res.json(machine);
   } catch (err) {
