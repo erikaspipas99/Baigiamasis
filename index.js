@@ -71,3 +71,5 @@ app.delete("/machine", async (req, res) => {
     res.send("Error delete");
   }
 });
+
+app.listen(3000);

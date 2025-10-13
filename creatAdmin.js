@@ -16,7 +16,7 @@ router.post("/login", async (req, res) => {
 
   if (!user) return res.send("Bad Users");
 
-  const isValid = await bcrypt.compare(password, user.password);
+  const isValid = await bcrypt.compare(password, user.pass);
   if (!isValid) return res.send("Bad password");
 
   const token = jwt.sign(
