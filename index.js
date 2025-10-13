@@ -39,7 +39,7 @@ app.get("/machine", authRegion, async (req, res) => {
       appeal = { region: req.user.region };
     }
 
-    const machine = await collection.find().toArray();
+    const machine = await collection.find(appeal).toArray();
     res.json(machine);
   } catch (err) {
     res.send("Miss machine");
