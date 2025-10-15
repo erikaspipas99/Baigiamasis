@@ -5,6 +5,17 @@ Requirements:
 Visual Studio Code;
 node.js 18+;
 MongoSV atlas;
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-jwt": "^8.5.1",
+    "joi": "^18.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "mongodb": "^6.20.0",
+    "pnpm": "^10.18.1",
+    "router": "^2.2.0" }
 
 Project Setup:
 git clone https://github.com/erikaspipas99/baigiamasis.git
@@ -55,4 +66,5 @@ File structure:
 -| db.js // MongoDB login;
 -| hash.js // password hashing;
 -| validate.js // Joi validation;
+
 
