@@ -49,9 +49,10 @@ user - stores users with "username", "pass(bcvrypt):, "role", "region"
 machine - basic data about machines.
 
 File structure:
--| index.js // main server file and CRUD operations
--| Login.js // Login logic with JWT
--| authRegion.js // middleware for JWT verification
--| db.js // MongoDB login
--| hash.js // password hashing
--| validate.js // Joi validation
+-| index.js // main server file and CRUD operations;
+-| Login.js // Login logic with JWT;
+-| authRegion.js // middleware for JWT verification;
+-| db.js // MongoDB login;
+-| hash.js // password hashing;
+-| validate.js // Joi validation;
+
