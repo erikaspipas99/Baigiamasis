@@ -1,4 +1,4 @@
-﻿# Baigiamasis
+﻿# Baigiamasis back-end
  
 Local Setup 
 Requirements:
@@ -66,5 +66,6 @@ File structure:
 -| db.js // MongoDB login;
 -| hash.js // password hashing;
 -| validate.js // Joi validation;
+
 
 
